@@ -15,11 +15,11 @@ public class DatabaseConnection {
 
     static final String PASSWORD = "";
 
-     static Connection connection;
+    static volatile Connection connection;
 
-     public DatabaseConnection() {}
+    private DatabaseConnection() {}
 
-     public static Connection getConnection() {
+    public static Connection getConnection() {
          if (Objects.isNull(connection)) {
              try {
                  connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -28,5 +28,5 @@ public class DatabaseConnection {
              }
          }
          return connection;
-     }
+    }
 }
